@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" href="./ico/favicon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>今日热榜 </title>
+    <script type="module" crossorigin src="/assets/index-ac1cd278.js"></script>
+    <link rel="stylesheet" href="/assets/index-4fb75512.css">
+  <link rel="manifest" href="/manifest.webmanifest"><script id="vite-plugin-pwa:register-sw" src="/registerSW.js"></script></head>
+  <body>
+    <div id="app"></div>
+    
+  <script>
+      let myDate = new Date();
+      let mon = myDate.getMonth() + 1;
+      let date = myDate.getDate();
+      let events = {
+          '4.4': '清明节',
+          '5.12': '汶川地震纪念日',
+          '9.9': '毛泽东逝世纪念日',
+          '9.18': '九·一八事变纪念日',
+          '12.13': '南京大屠杀纪念日',
+          '10.27': '李克强同志逝世'
+      };
+
+      for (let day in events) {
+          let d = day.split('.');
+          if (mon == d[0] && date == d[1]) {
+              document.write(
+                  '<style>html{-webkit-filter:grayscale(100%);-moz-filter:grayscale(100%);-ms-filter:grayscale(100%);-o-filter:grayscale(100%);filter:progid:DXImageTransform.Microsoft.BasicImage(grayscale=1);_filter:none}</style>'
+              );
+              document.getElementById('change').innerHTML = "Silence in silence";
+              document.getElementById('change1').innerHTML = "今天是个沉痛的日子，" + events[day] + "。";
+              window.addEventListener('load', function () {
+                  setTimeout(function () {
+                      iziToast.show({
+                          timeout: 14000,
+                          icon: "fa-solid fa-clock",
+                          message: '今天是' + events[day] + '。'
+                      });
+                  }, 3800);
+              }, false);
+          }
+      }
+  </script>
+  </body>
+</html>
